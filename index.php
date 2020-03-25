@@ -15,7 +15,7 @@
     <div class="container">
       <div class="row coffee-machine">
         <div class="col-6 coffee-list">
-          <div class="row flex-column p-3">
+          <div class="row flex-column p-3 h-100 justify-content-around">  <!--флекс колум делает из строки столбец--> <!--джустифай растянуть-->
             <div class="coffee-item col">
               <img src="img/americano.png" alt="">
               <span>Американо - 50 руб.</span>
@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="col-6 coffee-oper">
-          <div class="row p-3">        <!-- p-3 отступ -->
+          <div class="row p-3">        <!-- p-3 отступ бутстрап-->
             <div class="col-6">
               <div class="display">
                 <p class="display-text">Выберите кофе</p>
@@ -43,8 +43,23 @@
                   <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>              <!--прогресс бар с бутстрапа-->
                 </div>
               </div>
+              <div class="coffee-cup">
+                <img src="img/americano.png" alt="">
+              </div>
             </div>
-            <div class="col-6"></div>
+            <div class="col-6">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Баланс" aria-label="Имя получателя" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">&#8381</span>  <!--внутри код символа-->   <!--input-->
+                </div>
+              </div>
+              <div class="atm">
+                <img src="img/bill_acc.png" alt="">
+              </div>
+              <button class="btn btn-primary btn-block mt-2">Сдача</button> <!--примари цвет кнопки, блок ширина-->
+              <div class="change-box"></div>
+            </div>
           </div>
         </div>
       </div>

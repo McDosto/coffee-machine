@@ -1,24 +1,25 @@
 .coffee-machine {
-  border: 3px solid black;
-  margin-top: 100px;
+  border: 3px solid black;     /*рамка*/
+  margin-top: 100px;           /*отступ над рамкой*/
 }
 
 .coffee-list {
   background-image: url("img/background.jpg");   /*фон*/
-  background-size: cover;                  
+  background-size: cover;             /*растянуть фон*/                     
 }
 
 .coffee-item {
-  background: rgba(0, 0, 0, 0.7);    
+  max-height: 75px;
+  background: rgba(0, 0, 0, 0.7); /*цвет областей(фон строки) затемнение*/   
   /* color: white;*/
-  margin: 10px 0;
-  border-radius: calc(75px / 2);
+  margin: 10px 0;  /*отступ межу затемненными областями св cy10 сл спр 0*/
+  border-radius: calc(75px / 2);  /*закругление затемненных обласией*/
   cursor : pointer;     /*при наведение мышки на затемненные области меняется крусор на палец*/
 }
 
 .coffee-item span {
-  color: white;
-  margin-left: 25px;
+  color: white;      /*цвет текста*/
+  margin-left: 25px; /*отступ теста  от картинок*/
 }
 
 .coffee-item img {
@@ -28,16 +29,32 @@
   margin-left: -15px;   /*сдвиг картинок влево по затемненной области*/
 }
 
-.coffee-item:hover {               /* подсветка при наведение*/
+.coffee-item:hover {     /* подсветка при наведение на затемненные области*/
   background: rgba(30, 30, 30, 0.7);
 }
 
 .coffee-oper {
-  background: lightgrey;
+  background: lightgrey;    /*фон второй области*/
 }
 
 .display {
-  background: lightgreen;   /*фон*/
+  background: lightgreen;   /*фон в рамке*/
   border: 3px solid darkgreen; /*цвет рамки*/
   padding: 10px;  /*отступ от краев рамки бар и надпись*/
+  margin-bottom: 30px; /*отступ снизу бара*/
+}
+
+.coffee-cup img {
+  width: 100%;    /*ширина относит родит. элемента*/
+}
+
+.atm img {
+  width: 100%;  
+}
+
+.change-box {
+  background: grey;      /*фон ячейки для сдачи*/
+  border: 3px solid black; /*рамка*/
+  height: 100px;            /*высота*/
+  margin-top: 15px;         /*отступ сверху*/
 }
