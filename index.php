@@ -16,19 +16,19 @@
       <div class="row coffee-machine">
         <div class="col-6 coffee-list">
           <div class="row flex-column p-3 h-100 justify-content-around">  <!--флекс колум делает из строки столбец--> <!--джустифай растянуть-->
-            <div class="coffee-item col"  onclick="buyCoffee('Американо', 50)">  <!--онклик подключаем функцию при нажатии-->
+            <div class="coffee-item col"  onclick="buyCoffee('Американо', 50, this)">  <!--онклик подключаем функцию при нажатии-->
               <img src="img/americano.png" alt="">
               <span>Американо - 50 руб.</span>
             </div>
-            <div class="coffee-item col" onclick="buyCoffee('Капучино', 78)">
+            <div class="coffee-item col" onclick="buyCoffee('Капучино', 78, this)">
               <img src="img/cappuccino.png" alt="">
               <span>Капучино - 78 руб.</span>
             </div>
-            <div class="coffee-item col" onclick="buyCoffee('Эспрессо', 21)">
+            <div class="coffee-item col" onclick="buyCoffee('Эспрессо', 21, this)">
               <img src="img/espresso.png" alt="">
               <span>Эспрессо - 21 руб.</span>
             </div>
-            <div class="coffee-item col" onclick="buyCoffee('Латтэ', 115)">
+            <div class="coffee-item col" onclick="buyCoffee('Латтэ', 115, this)">
               <img src="img/latte.jpg" alt="">
               <span>Латтэ - 115 руб.</span>
             </div>
@@ -40,11 +40,11 @@
               <div class="display">
                 <p class="display-text">Выберите кофе</p>
                 <div class="progress">
-                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>              <!--прогресс бар с бутстрапа-->
+                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>              <!--прогресс бар с бутстрапа-->
                 </div>
               </div>
-              <div class="coffee-cup">
-                <img src="img/americano.png" alt="">
+              <div class="coffee-cup ">
+                <img class="d-none" src="img/americano.png" alt="">
               </div>
             </div>
             <div class="col-6">
