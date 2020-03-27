@@ -22,15 +22,15 @@ function buyCoffee(name, cost, elem) {
    changeDisplayText("Недостаточно средств!")   /*вызываем функию смена текста*/
    return;
   }
-  balance.style.border = "none"        
-  balance.style.backgroundColor = "white";
+  balance.style.border = "none"  //убирает рамку, если денег хватает      
+  balance.style.backgroundColor = "white"; //делает белый фон строки, если денег хватает 
   balance.value = (+balance.value - cost).toFixed(2);  /*туфиксед количество цифр после точки*/
   cookCoffee(name, elem)
 }
 
 function cookCoffee(name, elem) {
-  coffeeStatus = "cooking";
-  changeDisplayText("Ваш " + name + " готовится");
+  coffeeStatus = "cooking";       //выводит надпись на дисплее готовится
+  changeDisplayText("Ваш " + name + " готовится"); // -||-
   
   let cupImg = elem.querySelector("img");
   let cupSrc = cupImg.getAttribute("src");
@@ -58,7 +58,7 @@ function takeCoffee() {             //функц взять кофе
   }
   coffeeStatus = "waiting";            //переводит в статус вайтинг       
   coffeeCup.classList.add("d-none");   //убирает кружку 
-  coffeeCup.style.cursor = "auto";    //забрали кружку, курсол стал обычным
+  coffeeCup.style.cursor = "auto";    //забрали кружку, курсор стал обычным
   progressBar.style.width = "0";      //забрали кофе, полоска обнулилась
   changeDisplayText("Выберите кофе")  //забрали кофе, поменялась надпись на дисплее
 }
@@ -67,3 +67,47 @@ function changeDisplayText(text) {    /*создаем функцию смена
   /*displayText.innerText = "<span>"+text+"</span>";;*/  /*нельзя вставлять html код*/
   displayText.innerHTML = "<span>"+text+"</span>"; /*можно*/
 }
+
+
+//------------------------------Drag `n` Drop(тащи и клади)-----------------------
+
+let bills = document.querySelectorAll(".wallet img");
+
+for(let i = 0; i < bills.length; i++) {
+  bills[i].onmousedown = takeMoney;      //нажимаем и держим вызываем функцию
+}
+
+function takeMoney (event) {
+  event.preventDefault();  //сбрасывает браузерный дрэгтдроп(события по умолчанию)
+  
+  let bill = this;
+  let billCost = bill.getAttribute("cost");
+  
+  bill.style.position = "absolute";
+  bill.style.transform = "rotate(90deg)"
+  
+  let billCoords = bill.getBoundingClientRect();    // координаты элемента
+  let billWidth = billCoords.width;         
+  let billHeight= billCoords.height;
+  
+  bill.style.top = event.clientY - billWidth/2 + "px"    //сдвигает центр купюры к мышке
+  bill.style.left = event.clientX - billHeight/2 + "px"  //сдвигает центр купюры к мышке
+  
+  window.onmousemove = (event) => {                    // при нажатии двигается по координатам мышки
+    bill.style.top = event.clientY - billWidth/2 + "px"   
+    bill.style.left = event.clientX - billHeight/2 + "px"
+  };
+  
+  bill.onmouseup = dropMoney    //отпустить купюру 
+}
+
+function dropMoney() {
+  window.onmousemove = null; //отключаем движение за мышкой после отжатия клавиши  
+}
+
+  
+  
+  
+  
+  
+
