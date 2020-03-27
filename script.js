@@ -6,9 +6,14 @@ let progressBar = document.querySelector(".progress-bar");
 let coffeeCup = document.querySelector(".coffee-cup img");
 let coffeeStatus = "waiting"; // "cooking" "ready"
 
+coffeeCup.onclick = takeCoffee; //вызываем функцию убрать кружку  первый вариант*
+ 
+
+
+
 function buyCoffee(name, cost, elem) {
-  if (coffeeStatus != "waiting") {
-     return;
+  if (coffeeStatus != "waiting") {   //если статус не равен waiting-    
+     return;                            // - то ничего не делай
   }
   let afterBuyValue = +balance.value - cost; 
   if ( (+balance.value - cost) < 0 || Number.isNaN(afterBuyValue)) { /*палки или*/
@@ -32,22 +37,30 @@ function cookCoffee(name, elem) {
   coffeeCup.setAttribute("src", cupSrc);
   coffeeCup.style.opacity = "0";
   coffeeCup.classList.remove("d-none");      // убрать класс
-  //coffeeCup.classList.add("")   добавить
-  //coffeeCup.classList.toggle("")      вкл выкл
-  //coffeeCup.classList.contains("d-none")  содержит ли?
   
   let readyPercent = 0;
   let cookingInterval = setInterval(() => {
     readyPercent++
     progressBar.style.width = readyPercent + "%";
     coffeeCup.style.opacity = readyPercent + "%";
-    if (readyPercent == 100) {
-      coffeeStatus = "ready";
-      changeDisplayText ("Ваш " + name + " готов");
-      coffeeCup.style.cursor = "pointer";
+    if (readyPercent == 100) {              //если шкала 100%-
+      coffeeStatus = "ready";               //- то делай статус готов
+      changeDisplayText ("Ваш " + name + " готов");  //текст на дисплее по готовности
+      coffeeCup.style.cursor = "pointer";  //по готовности кофе меняет курсор на палец
       clearInterval(cookingInterval);
     }
   }, 100);
+}
+
+function takeCoffee() {             //функц взять кофе
+  if (coffeeStatus != "ready") {           //если статус не равен готов-
+    return;                                //- то ничего не делай
+  }
+  coffeeStatus = "waiting";            //переводит в статус вайтинг       
+  coffeeCup.classList.add("d-none");   //убирает кружку 
+  coffeeCup.style.cursor = "auto";    //забрали кружку, курсол стал обычным
+  progressBar.style.width = "0";      //забрали кофе, полоска обнулилась
+  changeDisplayText("Выберите кофе")  //забрали кофе, поменялась надпись на дисплее
 }
 
 function changeDisplayText(text) {    /*создаем функцию смена текста*/
