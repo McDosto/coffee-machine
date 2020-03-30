@@ -57,7 +57,7 @@
               <div class="atm">                          <!--купюроприемник-->
                 <img src="img/bill_acc.png" alt="">
               </div>
-              <button class="btn btn-primary btn-block mt-2">Сдача</button> <!--примари цвет кнопки, блок ширина-->
+              <button class="btn btn-primary btn-block mt-2 change">Сдача</button> <!--примари цвет кнопки, блок ширина-->
               <div class="change-box"></div>
             </div>
           </div>

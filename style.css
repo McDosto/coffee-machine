@@ -58,3 +58,12 @@
   height: 100px;            /*высота*/
   margin-top: 15px;         /*отступ сверху*/
 }
+
+.wallet img {
+  cursor: pointer;
+/*  width: 20%;*/
+}
+
+.change-box {
+  position: relative;
+}
