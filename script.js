@@ -156,13 +156,44 @@ let changeBtn = document.querySelector(".change")
 changeBtn.onclick = takeChange;
 
 function takeChange() {
-  tossCoin("10");
+  if (balance.value <= 0) {    // если боланс меньше или равно нулю  то
+  changeBtn.oncklick = takeChange;   // возвращает кнопку в раб сост
+    return;                        //  то ничего не делай
+  }
+  changeBtn.onclick = null           // отоключает кнопку во время выдачи сдачи
+  if (balance.value - 10 >= 0) {      //если баланс больше 10 то
+    setTimeout(() => {                // установка скорости выдачи
+      tossCoin("10");                   //вызываем функуию выдать десяточку
+      balance.value -= 10;               //при нажатии на десяточку вычетаем из баланса 
+      return takeChange();             // **** функцию
+    }, 300);                              //тайминг выдачи
+  } else if (balance.value - 5 >= 0) {
+    setTimeout(() => {
+      tossCoin("5");
+      balance.value -= 5;              
+      return takeChange();
+    }, 300);
+  } else if (balance.value - 2 >= 0) {
+     setTimeout(() => {
+      tossCoin("2");
+      balance.value -= 2;              
+      return takeChange();
+     }, 300);
+  } else if (balance.value - 1 >= 0) {
+     setTimeout(() => {
+      tossCoin("1");
+      balance.value -= 1;              
+      return takeChange();
+     }, 300);
+  }
 }
 
 function tossCoin(cost) {
   let changeContainer = document.querySelector(".change-box");
   let changeContainerCoords = changeContainer.getBoundingClientRect();
   let coinSrc = "";
+  
+  
   
   switch (cost) {
     case "10":
@@ -177,17 +208,19 @@ function tossCoin(cost) {
     case "1":
       coinSrc = "img/1rub.png";
       break;
-      
+   
+    
   }
   /*changeContainer.innerHTML += `
   <img src="${coinSrc}" style="height: 50px">`*/   //один из способов добавить элемент
   
   let coin = document.createElement("img");
   coin.setAttribute("src", coinSrc);
-  coin.style.height = "50px";
-  coin.style.cursor = "pointer"
-  coin.style.display = "inline-block";
-  coin.style.position = "absolute";
+  coin.style.height = "50px";  //высота монетки 50px
+  coin.style.cursor = "pointer" //мышка палец при наведении на монетки
+  coin.style.display = "inline-block"; // из строчнеого элемента делаем строчно-блочный
+  coin.style.position = "absolute";   //
+  coin.style.userSelect = "none";  //нельзя выделить монетки
   
   changeContainer.append(coin);   //прикрепить после внутри элемента
   /*changeContainer.prepand(coin); //прикрепить до    внутри элемента
@@ -201,6 +234,9 @@ function tossCoin(cost) {
   coin.style.left = 3 + Math.round(Math.random() *(changeContainerCoords.width - 56)) + "px";
   
  coin.onclick = () => coin.remove();
-  
+ 
+  let coinSound = new Audio("sound/coindrop.mp3"); //добавляем звук
+  // coinSound.src = "sound/coindrop.mp3";
+  coinSound.play();  //проиграть   
 }
   
